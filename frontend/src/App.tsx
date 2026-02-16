@@ -4,6 +4,22 @@ import type { Product } from './types';
 import { ProductCard } from './components/ProductCard';
 import { Loader2, AlertCircle } from 'lucide-react';
 
+const parseSalesVolume = (salesStr: string | null): number => {
+  if (!salesStr) return 0;
+  // Match number at start, optionally followed by K or M
+  // e.g. "800+ ...", "7K+ ...", "1.5M ..."
+  const match = salesStr.match(/^([\d.]+)\s*([kKmM])?/);
+  if (!match) return 0;
+
+  let value = parseFloat(match[1]);
+  const suffix = match[2]?.toLowerCase();
+
+  if (suffix === 'k') value *= 1000;
+  if (suffix === 'm') value *= 1000000;
+
+  return value;
+};
+
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [dates, setDates] = useState<string[]>([]);
@@ -11,6 +27,10 @@ function App() {
   const [showBrandPassOnly, setShowBrandPassOnly] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Sorting state
+  const [validIds, setValidIds] = useState<number[]>([]);
+
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const ROWS_PER_PAGE = 50;
@@ -19,22 +39,16 @@ function App() {
     fetchDates();
   }, []);
 
+  // When filters change, fetch ALL matching IDs, sort them, then fetch page 0
   useEffect(() => {
     if (selectedDate) {
-      // Reset when date changes
-      setPage(0);
-      setHasMore(true);
-      setProducts([]);
-      setProducts([]);
-      fetchProducts(selectedDate, 0, false, showBrandPassOnly);
+      fetchAndSortIds();
     }
   }, [selectedDate, showBrandPassOnly]);
 
   const fetchDates = async () => {
     if (!supabase) return;
     try {
-      // Fetch all execution dates (lightweight query if possible, but distinct is hard in simple supabase client)
-      // We'll fetch just that column
       const { data, error } = await supabase
         .from('products_snapshot')
         .select('execution_date');
@@ -42,17 +56,16 @@ function App() {
       if (error) throw error;
 
       if (data) {
-        // Deduplicate and sort
         const uniqueDates = Array.from(new Set(data.map(item => item.execution_date as string)))
           .filter(Boolean)
-          .sort((a, b) => new Date(b).getTime() - new Date(a).getTime()); // Descending
+          .sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
 
         setDates(uniqueDates);
         if (uniqueDates.length > 0) {
-          setSelectedDate(uniqueDates[0]); // Select latest by default
+          setSelectedDate(uniqueDates[0]);
         } else {
-          // If no dates found, maybe try fetching products anyway without filter
-          fetchProducts('', 0, false, showBrandPassOnly);
+          // Try fetching without date if none exist
+          fetchAndSortIds('');
         }
       }
     } catch (err) {
@@ -60,54 +73,93 @@ function App() {
     }
   };
 
-  const fetchProducts = async (dateFilter: string, pageNum: number, append: boolean, brandPass: boolean) => {
+  const fetchAndSortIds = async (dateOverride?: string) => {
     if (!supabase) {
-      setError('Missing Supabase configuration. Check your .env file.');
+      setError('Missing Supabase configuration.');
       setLoading(false);
       return;
     }
 
-    try {
-      setLoading(true);
-      const from = pageNum * ROWS_PER_PAGE;
-      const to = from + ROWS_PER_PAGE - 1;
+    setLoading(true);
+    setError(null);
+    setProducts([]);
+    setPage(0);
+    setHasMore(true);
 
+    try {
+      // 1. Fetch lightweight index of ALL items matching filter
       let query = supabase
         .from('products_snapshot')
-        .select('*')
-        .order('sales_volume_last_month', { ascending: false })
-        .range(from, to);
+        .select('id, sales_volume_last_month');
 
-      if (dateFilter) {
-        query = query.eq('execution_date', dateFilter);
+      const dateToUse = dateOverride !== undefined ? dateOverride : selectedDate;
+      if (dateToUse) {
+        query = query.eq('execution_date', dateToUse);
       }
-
-      if (brandPass) {
+      if (showBrandPassOnly) {
         query = query.eq('brand_pass', true);
       }
 
       const { data, error } = await query;
+      if (error) throw error;
+
+      // 2. Client-side sort by numeric sales volume
+      const sorted = (data || []).sort((a, b) => {
+        const valA = parseSalesVolume(a.sales_volume_last_month);
+        const valB = parseSalesVolume(b.sales_volume_last_month);
+        return valB - valA; // Descending
+      }).map(item => item.id);
+
+      setValidIds(sorted);
+
+      // 3. Fetch first page details
+      await fetchProductDetails(sorted, 0, false);
+
+    } catch (err: any) {
+      console.error('Error in fetchAndSortIds:', err);
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+
+  const fetchProductDetails = async (allIds: number[], pageNum: number, append: boolean) => {
+    const from = pageNum * ROWS_PER_PAGE;
+    const to = from + ROWS_PER_PAGE;
+    const pageIds = allIds.slice(from, to);
+
+    if (pageIds.length === 0) {
+      if (!append) setProducts([]);
+      setHasMore(false);
+      setLoading(false);
+      return;
+    }
+
+    if (!supabase) return;
+
+    try {
+      const { data, error } = await supabase
+        .from('products_snapshot')
+        .select('*')
+        .in('id', pageIds);
 
       if (error) throw error;
 
-      const newProducts = data || [];
-
-      // Determine if there are more products to load
-      // If we got fewer items than requested, we've reached the end
-      if (newProducts.length < ROWS_PER_PAGE) {
-        setHasMore(false);
-      } else {
-        setHasMore(true);
-      }
+      // Re-sort data to match the order of pageIds (since .in() is not ordered)
+      const productMap = new Map(data?.map(p => [p.id, p]));
+      const orderedProducts = pageIds
+        .map(id => productMap.get(id))
+        .filter(Boolean) as Product[]; // filter out undefined if any missing
 
       if (append) {
-        setProducts(prev => [...prev, ...newProducts]);
+        setProducts(prev => [...prev, ...orderedProducts]);
       } else {
-        setProducts(newProducts);
+        setProducts(orderedProducts);
       }
+
+      setHasMore(to < allIds.length);
     } catch (err: any) {
-      console.error('Error fetching products:', err);
-      setError(err.message || 'Failed to fetch products');
+      console.error('Error fetching details:', err);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -116,9 +168,8 @@ function App() {
   const loadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchProducts(selectedDate, nextPage, true, showBrandPassOnly);
+    fetchProductDetails(validIds, nextPage, true);
   };
-
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
@@ -127,20 +178,21 @@ function App() {
           <h1 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             📦 Product Catalog
             <span className="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-              {products.length} Products
+              {validIds.length} Products
             </span>
           </h1>
           <div className="flex items-center gap-4">
-            <select
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="block w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border"
-            >
-              {dates.map(date => (
-                <option key={date} value={date}>{date}</option>
-              ))}
-            </select>
-
+            {dates.length > 0 && (
+              <select
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="block w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border"
+              >
+                {dates.map(date => (
+                  <option key={date} value={date}>{date}</option>
+                ))}
+              </select>
+            )}
 
             <label className="flex items-center space-x-2 text-sm text-gray-700 select-none cursor-pointer">
               <input
@@ -148,7 +200,6 @@ function App() {
                 checked={showBrandPassOnly}
                 onChange={(e) => {
                   setShowBrandPassOnly(e.target.checked);
-                  // The useEffect on showBrandPassOnly will handle refetch
                 }}
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
@@ -157,9 +208,7 @@ function App() {
 
             <button
               onClick={() => {
-                setPage(0);
-                setHasMore(true);
-                fetchProducts(selectedDate, 0, false, showBrandPassOnly);
+                fetchAndSortIds();
               }}
               className="text-sm text-blue-600 hover:text-blue-800 font-medium"
             >
@@ -167,10 +216,10 @@ function App() {
             </button>
           </div>
         </div>
-      </header >
+      </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {loading ? (
+        {loading && products.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 text-gray-500">
             <Loader2 className="animate-spin mb-2" size={32} />
             <p>Loading products...</p>
@@ -211,7 +260,7 @@ function App() {
           </>
         )}
       </main>
-    </div >
+    </div>
   );
 }
 
