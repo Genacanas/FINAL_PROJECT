@@ -1,5 +1,15 @@
 {
   "Automotive": [
-    { "Agricultural Vehicle Parts & Equipment": "automotive/15620930031" }
+    { "Agricultural Vehicle Parts & Equipment": "automotive/15620930031" },
+    { "Car & Vehicle Electronics": "automotive/3041064031" },
+    { "Car Accessories": "automotive/79923031" },
+    { "Car Parts": "automotive/79919031" },
+    { "Car Seats & Accessories": "automotive/3968832031" },
+    { "Car Tyres & Rims": "automotive/424628031" },
+    { "Gifts & Merchandise": "automotive/82943031" },
+    { "Motorbikes, Accessories & Parts": "automotive/4606925031" },
+    { "Motorhome Parts & Accessories": "automotive/79925031" },
+    { "Tools & Equipment": "automotive/2502064031" },
+    { "Transporting & Storage": "automotive/79924031" }
   ]
 }
