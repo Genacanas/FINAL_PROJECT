@@ -8,6 +8,7 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [dates, setDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
+  const [showBrandPassOnly, setShowBrandPassOnly] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
@@ -24,9 +25,10 @@ function App() {
       setPage(0);
       setHasMore(true);
       setProducts([]);
-      fetchProducts(selectedDate, 0, false);
+      setProducts([]);
+      fetchProducts(selectedDate, 0, false, showBrandPassOnly);
     }
-  }, [selectedDate]);
+  }, [selectedDate, showBrandPassOnly]);
 
   const fetchDates = async () => {
     if (!supabase) return;
@@ -50,7 +52,7 @@ function App() {
           setSelectedDate(uniqueDates[0]); // Select latest by default
         } else {
           // If no dates found, maybe try fetching products anyway without filter
-          fetchProducts('', 0, false);
+          fetchProducts('', 0, false, showBrandPassOnly);
         }
       }
     } catch (err) {
@@ -58,7 +60,7 @@ function App() {
     }
   };
 
-  const fetchProducts = async (dateFilter: string, pageNum: number, append: boolean) => {
+  const fetchProducts = async (dateFilter: string, pageNum: number, append: boolean, brandPass: boolean) => {
     if (!supabase) {
       setError('Missing Supabase configuration. Check your .env file.');
       setLoading(false);
@@ -78,6 +80,10 @@ function App() {
 
       if (dateFilter) {
         query = query.eq('execution_date', dateFilter);
+      }
+
+      if (brandPass) {
+        query = query.eq('brand_pass', true);
       }
 
       const { data, error } = await query;
@@ -110,7 +116,7 @@ function App() {
   const loadMore = () => {
     const nextPage = page + 1;
     setPage(nextPage);
-    fetchProducts(selectedDate, nextPage, true);
+    fetchProducts(selectedDate, nextPage, true, showBrandPassOnly);
   };
 
 
@@ -125,22 +131,35 @@ function App() {
             </span>
           </h1>
           <div className="flex items-center gap-4">
-            {dates.length > 0 && (
-              <select
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="block w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border"
-              >
-                {dates.map(date => (
-                  <option key={date} value={date}>{date}</option>
-                ))}
-              </select>
-            )}
+            <select
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="block w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md border"
+            >
+              {dates.map(date => (
+                <option key={date} value={date}>{date}</option>
+              ))}
+            </select>
+
+
+            <label className="flex items-center space-x-2 text-sm text-gray-700 select-none cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showBrandPassOnly}
+                onChange={(e) => {
+                  setShowBrandPassOnly(e.target.checked);
+                  // The useEffect on showBrandPassOnly will handle refetch
+                }}
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <span className="font-medium">Brand Pass Only</span>
+            </label>
+
             <button
               onClick={() => {
                 setPage(0);
                 setHasMore(true);
-                fetchProducts(selectedDate, 0, false);
+                fetchProducts(selectedDate, 0, false, showBrandPassOnly);
               }}
               className="text-sm text-blue-600 hover:text-blue-800 font-medium"
             >
@@ -148,7 +167,7 @@ function App() {
             </button>
           </div>
         </div>
-      </header>
+      </header >
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading ? (
@@ -192,7 +211,7 @@ function App() {
           </>
         )}
       </main>
-    </div>
+    </div >
   );
 }
 

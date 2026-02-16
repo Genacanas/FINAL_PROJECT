@@ -24,7 +24,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }
 
     const handleCardClick = () => {
-        if (product.asin) {
+        if (product.product_url) {
+            window.open(product.product_url, '_blank');
+        } else if (product.asin) {
             window.open(`https://www.amazon.com/dp/${product.asin}`, '_blank');
         }
     };
