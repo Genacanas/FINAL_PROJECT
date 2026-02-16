@@ -1,0 +1,487 @@
+{
+  "execution_date": "2026-02-12",
+  "country": "DE",
+  "language": "en_GB",
+  "results": [
+    {
+      "asin": "B00295JXWU",
+      "status_code": 200,
+      "response": {
+        "status": "OK",
+        "request_id": "4ef816d1-131e-46ea-9ede-f346493b9012",
+        "parameters": {
+          "asin": "B00295JXWU",
+          "country": "DE",
+          "language": "en_GB"
+        },
+        "data": {
+          "asin": "B00295JXWU",
+          "product_title": "Liqui Moly P000365 3552 multi-purpose grease, 400 g",
+          "product_price": "6.69",
+          "product_original_price": "€7.99",
+          "unit_price": "€16.73",
+          "unit_count": 0,
+          "minimum_order_quantity": null,
+          "currency": "EUR",
+          "country": "DE",
+          "domain": "www.amazon.de",
+          "product_byline": "Visit the Liqui Moly Store",
+          "product_byline_link": "https://www.amazon.de/-/en/stores/LIQUIMOLY/page/B97F87B4-365E-471E-8387-97B2475821B6?lp_asin=B00295JXWU&ref_=ast_bln",
+          "product_byline_links": [
+            "https://www.amazon.de/-/en/stores/LIQUIMOLY/page/B97F87B4-365E-471E-8387-97B2475821B6?lp_asin=B00295JXWU&ref_=ast_bln"
+          ],
+          "product_star_rating": "4.7",
+          "product_num_ratings": 5470,
+          "product_url": "https://www.amazon.de/dp/B00295JXWU",
+          "product_slug": "Liqui-Moly-P000365-3552-multi-purpose",
+          "product_photo": "https://m.media-amazon.com/images/I/51pxc-SXMcL._AC_SL1000_.jpg",
+          "product_num_offers": 28,
+          "product_availability": "In stock",
+          "product_condition": "One-time purchase",
+          "is_best_seller": true,
+          "is_amazon_choice": false,
+          "is_prime": false,
+          "climate_pledge_friendly": false,
+          "sales_volume": "1K+ bought in past month",
+          "about_product": [
+            "Excellent walking stability",
+            "Reduces friction and wear",
+            "Good corrosion protection",
+            "Highest pressure absorption capacity",
+            "Excellent cold and hot water resistant",
+            "Excellent lubrication",
+            "Optimal ageing stability"
+          ],
+          "product_description": null,
+          "product_information": {
+            "Manufacturer": "Liqui Moly",
+            "Brand": "Liqui Moly",
+            "Model": "Multi-purpose grease",
+            "Item Weight": "400 g",
+            "Product Dimensions": "5.5 x 5.5 x 23.8 cm; 400 g",
+            "Batteries": "1 12V batteries required.",
+            "Item model number": "3552",
+            "Manufacturer part number": "P000365",
+            "ASIN": "B00295JXWU",
+            "Best Sellers Rank": "144 in Automotive (See Top 100 in Automotive)  1 in Agricultural Vehicle Oils & Fluids",
+            "Date First Available": "30 Oct 2009"
+          },
+          "rating_distribution": {
+            "1": 1,
+            "2": 1,
+            "3": 4,
+            "4": 14,
+            "5": 80
+          },
+          "product_photos": [
+            "https://m.media-amazon.com/images/I/51pxc-SXMcL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/61qAFtpZvNL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/61Go3yHKwDL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/71Qn1QkPjHL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/719sA++fX-L._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/71-aOzYMTpL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/61hnYu7qAQL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/613wu770N3L._AC_.jpg"
+          ],
+          "product_videos": [
+            {
+              "id": "amzn1.vse.video.1423f30e4fd5478285a6b9685303ee84",
+              "title": "Liqui Moly P000365 3552 Mehrzweckfett, 400 g",
+              "video_url": "https://m.media-amazon.com/images/S/vse-vms-transcoding-artifact-eu-west-1-prod/48c1370b-7107-481c-b29f-6aeb8d1b75a6/default.jobtemplate.hls.m3u8",
+              "video_height": "1080",
+              "video_width": "1920",
+              "thumbnail_url": "https://m.media-amazon.com/images/I/51B-hp6BirL.SS40_BG85,85,85_BR-120_PKdp-play-icon-overlay__.jpg",
+              "product_asin": "B00295JXWU",
+              "parent_asin": "B0B7LJMNQY"
+            }
+          ],
+          "user_uploaded_videos": [],
+          "video_thumbnail": "https://m.media-amazon.com/images/I/51B-hp6BirL.SX522_.jpg",
+          "has_video": true,
+          "product_details": {
+            "Material": "Lithium",
+            "Brand": "Liqui Moly",
+            "Package information": "Tube",
+            "Sıvı Hacmi": "0.4 Kilograms",
+            "Item weight": "0.4 Kilograms"
+          },
+          "top_reviews": [
+            {
+              "review_id": "R1H1XZEYEZ7TNY",
+              "review_title": "Top Mehrzweckfett – Zuverlässig und vielseitig!",
+              "review_comment": "Ich habe das LIQUI MOLY Mehrzweckfett für verschiedene Anwendungen gekauft und bin sehr zufrieden. Es lässt sich problemlos auftragen und sorgt für eine zuverlässige Schmierung. Besonders für bewegliche Teile wie Gewindespindeln funktioniert es hervorragend und verhindert das Quietschen. Die Qualität des Fetts ist wirklich gut. Es hat eine angenehme Konsistenz, die für eine dauerhafte Schmierung sorgt und die Oberflächen vor Korrosion schützt. Ich nutze es sowohl für Maschinen als auch für landwirtschaftliche Geräte und konnte keinerlei Mängel feststellen. Das Preis-Leistungs-Verhältnis ist ebenfalls top – für die Qualität und Menge bekommt man wirklich viel für sein Geld. Für alle, die ein zuverlässiges Fett suchen, kann ich dieses Produkt nur empfehlen. Fazit: Super Fett für viele Anwendungen, das zuverlässig funktioniert und zu einem fairen Preis erhältlich ist. Würde ich definitiv wieder kaufen!",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R1H1XZEYEZ7TNY",
+              "review_author_id": "AHY6NMP5O7OKSISO34DSKFHIUMDQ",
+              "review_author": "Michael N. ",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AHY6NMP5O7OKSISO34DSKFHIUMDQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 14 April 2025",
+              "is_verified_purchase": true,
+              "helpful_vote_statement": "4 people found this helpful",
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "RWYTI8T1MQY67",
+              "review_title": "Bewährte Qualität von LIQUI MOLY",
+              "review_comment": "Zum Mehrzweckfett von LIQUI MOLY gibt es nicht viel zu sagen – die Marke steht für zuverlässige Qualität. Das Produkt erfüllt seinen Zweck einwandfrei und ist vielseitig einsetzbar. Sehr gute Verarbeitung und überzeugende Qualität. Klare Kaufempfehlung.",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/RWYTI8T1MQY67",
+              "review_author_id": "AFOZY66KS7MWE6RSUUWZAUO5PSFQ",
+              "review_author": "Sakalakis Transporte",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AFOZY66KS7MWE6RSUUWZAUO5PSFQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/7bc1b57c-a253-4e09-8dd8-382fde693247._CR0%2C26%2C281%2C281_UX460_.jpg",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 29 January 2026",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R2CR375ZDZCDN",
+              "review_title": "Beste Fett der Welt",
+              "review_comment": "DAS Fett, wenns hart her geht. Benutzen das auch beruflich, es ist wirklich Weltklasse.",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R2CR375ZDZCDN",
+              "review_author_id": "AHW7A7QSTRVAR5JV3RVG4XGV7MLQ",
+              "review_author": "Kunde",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AHW7A7QSTRVAR5JV3RVG4XGV7MLQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 5 January 2026",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "400 gr.",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R1AN1G45QF0ZKV",
+              "review_title": "Gute Verarbeitung",
+              "review_comment": "Das LIQUI MOLY Mehrzweckfett ist eine ausgezeichnete Wahl für die Schmierung von Maschinen und landwirtschaftlichen Geräten. Mit seiner Lithiumfett-Formulierung bietet es eine zuverlässige Schmierung und Schutz vor Verschleiß und Korrosion. Die Konsistenz des Fetts ist ideal für verschiedene Anwendungen, es lässt sich leicht auftragen und haftet gut an den zu schmierenden Oberflächen. Es bildet eine dauerhafte Schutzschicht, die dazu beiträgt, die Lebensdauer der Maschinen und Geräte zu verlängern. Die Qualität des LIQUI MOLY Mehrzweckfetts ist erstklassig, es erfüllt höchste Standards und bietet eine zuverlässige Leistung unter verschiedenen Betriebsbedingungen. Die 1 kg-Packung ist ausreichend für zahlreiche Schmierungsanwendungen und bietet ein ausgezeichnetes Preis-Leistungs-Verhältnis.",
+              "review_star_rating": "4",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R1AN1G45QF0ZKV",
+              "review_author_id": "AF77GTNWFHDGVW3MPJ7RR3WOLLPQ",
+              "review_author": "Mario Ernst",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AF77GTNWFHDGVW3MPJ7RR3WOLLPQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 29 April 2024",
+              "is_verified_purchase": true,
+              "helpful_vote_statement": "3 people found this helpful",
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R2XQ9ZFHB602LJ",
+              "review_title": "Nice grease for any task",
+              "review_comment": "Nice grease for any task",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R2XQ9ZFHB602LJ",
+              "review_author_id": "AE7RAOQ2DLQP4HOPH2TZ5XIIXMJQ",
+              "review_author": "Aleksei",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AE7RAOQ2DLQP4HOPH2TZ5XIIXMJQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 18 January 2026",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "400 gr.",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R2JB4EH2EGNJTP",
+              "review_title": "Effektives Fett – hält ewig",
+              "review_comment": "Ich habe das Mehrzweckfett für quietschende Türen verwendet und bin sehr zufrieden. Es lässt sich leicht auftragen, haftet gut und sorgt sofort für Ruhe. Für diesen Zweck reicht schon eine winzige Menge – die große Dose wird ewig halten. Insgesamt ein hochwertiges Fett mit vielseitiger Anwendung.",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R2JB4EH2EGNJTP",
+              "review_author_id": "AFDAI3SII7JZ2OMZCSE4XNGBU6YQ",
+              "review_author": "Dominic",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AFDAI3SII7JZ2OMZCSE4XNGBU6YQ",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 8 November 2025",
+              "is_verified_purchase": true,
+              "helpful_vote_statement": "2 people found this helpful",
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R2UWJXBDCCG7KC",
+              "review_title": "Topp, super Qualität",
+              "review_comment": "Super! Gleich 2kg bestellt",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R2UWJXBDCCG7KC",
+              "review_author_id": "AHUH5W7SFH5VMWWJP3UAFSXHRQMA",
+              "review_author": "Amazon Customer",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AHUH5W7SFH5VMWWJP3UAFSXHRQMA",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 13 January 2026",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R1AFJMGUC2MQ9V",
+              "review_title": "Gutes Preis-Leistungs-Verhältnis.",
+              "review_comment": "Gutes Preis-Leistungs-Verhältnis.",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R1AFJMGUC2MQ9V",
+              "review_author_id": "AEGDBDV6XABGXVCKMCFT7JCQEUOA",
+              "review_author": "Roman Volivetskyi",
+              "review_author_url": "https://www.amazon.de/-/en/gp/profile/amzn1.account.AEGDBDV6XABGXVCKMCFT7JCQEUOA",
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Germany on 22 January 2026",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            }
+          ],
+          "top_reviews_global": [
+            {
+              "review_id": "R1DYG2G3IGD6CA",
+              "review_title": "Pas noire",
+              "review_comment": "Graisse couleur neutre, pour ceux qui comme moi ne savent pas traduire ce qui est marqué sur le pot 😜",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R1DYG2G3IGD6CA",
+              "review_author_id": null,
+              "review_author": "Sam degoute",
+              "review_author_url": null,
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Belgium on 26 February 2025",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "R28QJSNMBZLIBG",
+              "review_title": "le top du top",
+              "review_comment": "efficace pour des usages multiple",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/R28QJSNMBZLIBG",
+              "review_author_id": null,
+              "review_author": "Client d'Amazon",
+              "review_author_url": null,
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in France on 29 November 2025",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "RLANKUH8GUH6X",
+              "review_title": "Buena calidad",
+              "review_comment": "Bien",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/RLANKUH8GUH6X",
+              "review_author_id": null,
+              "review_author": "Fer",
+              "review_author_url": null,
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in Spain on 14 December 2025",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "400 gr. (pack of 2)",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "RP7K6QKUYQMEG",
+              "review_title": "grasa multiusos",
+              "review_comment": "Grasa de alta calidad adecuada para engranajes de plástico en la caja de cambios de una bicicleta eléctrica, bajo carga pesada, la caja de cambios recorrió 7000 km, los engranajes son de plástico, la grasa no los ablanda, no los estropea, la calidad es alta, menos uno pequeño, hay una fecha de caducidad en la lata, pero esto no afectó la calidad",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/RP7K6QKUYQMEG",
+              "review_author_id": null,
+              "review_author": "konstantin",
+              "review_author_url": null,
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/fca1ed50-53b3-45cd-aa8d-4d781efc709f._CR0%2C0%2C500%2C500_SX460_.jpeg",
+              "review_images": [
+                "https://m.media-amazon.com/images/I/61IBDwvlrgL.jpg",
+                "https://m.media-amazon.com/images/I/61JzEbLSrDL.jpg",
+                "https://m.media-amazon.com/images/I/61xUf+WnBuL.jpg",
+                "https://m.media-amazon.com/images/I/51Jwc4yRNdL.jpg"
+              ],
+              "review_video": null,
+              "review_date": "Reviewed in Spain on 20 April 2025",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            },
+            {
+              "review_id": "RV596FOHZGJV7",
+              "review_title": "If you want the best, you must buy the best.",
+              "review_comment": "Exactly what it says on the tin. If any old gunk will do the job, then maybe get something cheaper. But if you have a high performance bearing to lubricate in a specific environment, then you must get the specification correct and pay a higher price. If the whole area seems baffling, then that’s because in a way, if you don’t understand the specs, it is! This is one such product: specialist and suitable for a wide variety of uses within its specification. For its purpose, it’s legendary. If you don’t understand the specifications of greases and know you have a specialist bearing, be that in an expensive bike, an outboard motor or whatever, then contact a specialist for advice and then come back and pick the correct stuff.",
+              "review_star_rating": "5",
+              "review_link": "https://www.amazon.de/gp/customer-reviews/RV596FOHZGJV7",
+              "review_author_id": null,
+              "review_author": "CoolReviewer",
+              "review_author_url": null,
+              "review_author_avatar": "https://m.media-amazon.com/images/S/amazon-avatars-global/default.png",
+              "review_images": [],
+              "review_video": null,
+              "review_date": "Reviewed in the United Kingdom on 25 June 2023",
+              "is_verified_purchase": true,
+              "reviewed_product_asin": "B00295JXWU",
+              "reviewed_product_variant": {
+                "Size Name": "1 kg",
+                "Style Name": "Single"
+              },
+              "is_vine": false
+            }
+          ],
+          "delivery": "FREE delivery Tuesday, 17 February on eligible first order Or fastest delivery Tomorrow, 14 February",
+          "primary_delivery_time": "Tuesday, 17 February",
+          "category": {
+            "id": "automotive",
+            "name": "Automotive"
+          },
+          "category_path": [
+            {
+              "id": "78191031",
+              "name": "Automotive",
+              "link": "https://www.amazon.de/-/en/Automotive/b/ref=dp_bc_1?ie=UTF8&node=78191031"
+            },
+            {
+              "id": "15620930031",
+              "name": "Agricultural Vehicle Parts & Equipment",
+              "link": "https://www.amazon.de/-/en/Agricultural-Vehicle-Parts-Equipment/b/ref=dp_bc_2?ie=UTF8&node=15620930031"
+            },
+            {
+              "id": "15620963031",
+              "name": "Oils & Fluids",
+              "link": "https://www.amazon.de/-/en/Agricultural-Vehicle-Oils-Fluids/b/ref=dp_bc_3?ie=UTF8&node=15620963031"
+            }
+          ],
+          "product_variations_dimensions": [
+            "size",
+            "style"
+          ],
+          "product_variations": {
+            "size": [
+              {
+                "asin": "B004382QI4",
+                "value": "1 kg",
+                "is_available": true
+              },
+              {
+                "asin": "B00295JXWU",
+                "value": "400 gr.",
+                "is_available": true
+              },
+              {
+                "asin": "B0CH3L86BT",
+                "value": "400 gr. (pack of 2)",
+                "is_available": true
+              }
+            ]
+          },
+          "all_product_variations": {
+            "B004382QI4": {
+              "size": "1 kg",
+              "style": "Single"
+            },
+            "B00295JXWU": {
+              "size": "400 gr.",
+              "style": "Single"
+            },
+            "B0CH3L86BT": {
+              "size": "400 gr. (pack of 2)",
+              "style": "Single"
+            }
+          },
+          "coupon_discount_percentage": 5,
+          "has_aplus": true,
+          "aplus_images": [
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/45381c84-089e-468b-a87a-a4ab060d8ff2.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/a63e5fc5-81a7-4a26-8248-df9bde76a24f.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/17ddf9b4-ad46-40a4-b9a5-318d16bb29fe.jpg",
+            "https://m.media-amazon.com/images/S/aplus-media-library-service-media/387a8a13-35a9-4052-8be8-2f856e18e461.jpg"
+          ],
+          "has_brandstory": true,
+          "frequently_bought_together": [
+            {
+              "product_title": "This item:  Liqui Moly P000365 3552 multi-purpose grease, 400 g",
+              "product_price": "€6.69",
+              "product_photo": "https://images-eu.ssl-images-amazon.com/images/I/51pxc-SXMcL.jpg"
+            },
+            {
+              "product_title": "CarBole Grease Gun 8000PSI with Coupler and 3 Flexible Hoses and Extension Tube Made of Metal, with Six Nozzle Types and Suitable for Different Scenarios, Compatible with 400cc Ink Cartridge",
+              "product_price": "€28.99",
+              "product_url": "https://www.amazon.de/dp/B0D65JPFSZ",
+              "product_photo": "https://images-eu.ssl-images-amazon.com/images/I/719o40y-toL.jpg"
+            },
+            {
+              "product_title": "LIQUI MOLY LM 47 Long-Term Grease + MoS2 | 400 g | Lithium Grease | Item No.: 3520, Transparent",
+              "product_price": "€11.71",
+              "product_url": "https://www.amazon.de/dp/B00295JXKC",
+              "product_photo": "https://images-eu.ssl-images-amazon.com/images/I/51poYtm3WwL.jpg"
+            }
+          ],
+          "landing_asin": "B00295JXWU",
+          "parent_asin": "B0B7LJMNQY"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+# Environment variables
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# Data (optional, ask user if they want to ignore data folder, but for now just cache)
