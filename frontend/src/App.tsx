@@ -10,6 +10,9 @@ function App() {
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const ROWS_PER_PAGE = 50;
 
   useEffect(() => {
     fetchDates();
@@ -17,7 +20,11 @@ function App() {
 
   useEffect(() => {
     if (selectedDate) {
-      fetchProducts(selectedDate);
+      // Reset when date changes
+      setPage(0);
+      setHasMore(true);
+      setProducts([]);
+      fetchProducts(selectedDate, 0, false);
     }
   }, [selectedDate]);
 
@@ -43,7 +50,7 @@ function App() {
           setSelectedDate(uniqueDates[0]); // Select latest by default
         } else {
           // If no dates found, maybe try fetching products anyway without filter
-          fetchProducts('');
+          fetchProducts('', 0, false);
         }
       }
     } catch (err) {
@@ -51,7 +58,7 @@ function App() {
     }
   };
 
-  const fetchProducts = async (dateFilter: string) => {
+  const fetchProducts = async (dateFilter: string, pageNum: number, append: boolean) => {
     if (!supabase) {
       setError('Missing Supabase configuration. Check your .env file.');
       setLoading(false);
@@ -60,11 +67,14 @@ function App() {
 
     try {
       setLoading(true);
+      const from = pageNum * ROWS_PER_PAGE;
+      const to = from + ROWS_PER_PAGE - 1;
+
       let query = supabase
         .from('products_snapshot')
         .select('*')
         .order('sales_volume_last_month', { ascending: false })
-        .limit(50); // Limit to 50 for now
+        .range(from, to);
 
       if (dateFilter) {
         query = query.eq('execution_date', dateFilter);
@@ -74,7 +84,21 @@ function App() {
 
       if (error) throw error;
 
-      setProducts(data || []);
+      const newProducts = data || [];
+
+      // Determine if there are more products to load
+      // If we got fewer items than requested, we've reached the end
+      if (newProducts.length < ROWS_PER_PAGE) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }
+
+      if (append) {
+        setProducts(prev => [...prev, ...newProducts]);
+      } else {
+        setProducts(newProducts);
+      }
     } catch (err: any) {
       console.error('Error fetching products:', err);
       setError(err.message || 'Failed to fetch products');
@@ -82,6 +106,13 @@ function App() {
       setLoading(false);
     }
   };
+
+  const loadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchProducts(selectedDate, nextPage, true);
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
@@ -106,7 +137,11 @@ function App() {
               </select>
             )}
             <button
-              onClick={() => fetchProducts(selectedDate)}
+              onClick={() => {
+                setPage(0);
+                setHasMore(true);
+                fetchProducts(selectedDate, 0, false);
+              }}
               className="text-sm text-blue-600 hover:text-blue-800 font-medium"
             >
               Refresh
@@ -135,11 +170,26 @@ function App() {
             <p>No products found.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+              {products.map((product) => (
+                <ProductCard key={`${product.id}-${product.asin}`} product={product} />
+              ))}
+            </div>
+
+            {hasMore && (
+              <div className="flex justify-center pb-8">
+                <button
+                  onClick={loadMore}
+                  disabled={loading}
+                  className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-2 px-6 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transition-colors"
+                >
+                  {loading ? <Loader2 className="animate-spin" size={16} /> : null}
+                  {loading ? 'Loading...' : 'Load More Products'}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </main>
     </div>
