@@ -25,6 +25,7 @@ function App() {
   const [dates, setDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [showBrandPassOnly, setShowBrandPassOnly] = useState(false);
+  const [viewMode, setViewMode] = useState<'all' | 'approved' | 'rejected'>('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -44,7 +45,7 @@ function App() {
     if (selectedDate) {
       fetchAndSortIds();
     }
-  }, [selectedDate, showBrandPassOnly]);
+  }, [selectedDate, showBrandPassOnly, viewMode]);
 
   const fetchDates = async () => {
     if (!supabase) return;
@@ -98,6 +99,16 @@ function App() {
       }
       if (showBrandPassOnly) {
         query = query.eq('brand_pass', true);
+      }
+
+      if (viewMode === 'all') {
+        // Show pending by default? Or all? User said "products removed" and "approved products" lists.
+        // Usually main list is pending. Let's assume 'all' means 'pending' for the main workflow, 
+        // but the label says "Product Catalog".
+        // Let's filter by manual_status = 'pending' for the main view to make the workflow clear.
+        query = query.eq('manual_status', 'pending');
+      } else {
+        query = query.eq('manual_status', viewMode);
       }
 
       const { data, error } = await query;
@@ -171,6 +182,27 @@ function App() {
     fetchProductDetails(validIds, nextPage, true);
   };
 
+  const updateStatus = async (id: number, status: 'approved' | 'rejected' | 'pending') => {
+    if (!supabase) return;
+
+    // Optimistic update
+    setProducts(prev => prev.filter(p => p.id !== id));
+    setValidIds(prev => prev.filter(pid => pid !== id));
+
+    try {
+      const { error } = await supabase
+        .from('products_snapshot')
+        .update({ manual_status: status })
+        .eq('id', id);
+
+      if (error) throw error;
+    } catch (err) {
+      console.error('Error updating status:', err);
+      // Revert? (Complex for now, just log error)
+      alert('Failed to update status');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
       <header className="bg-white shadow-sm sticky top-0 z-10">
@@ -216,7 +248,40 @@ function App() {
             </button>
           </div>
         </div>
-      </header>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+          <div className="flex space-x-1 overflow-x-auto">
+            <button
+              onClick={() => setViewMode('all')}
+              className={`px-4 py-2 text-sm font-medium rounded-md whitespace-nowrap ${viewMode === 'all'
+                ? 'bg-blue-100 text-blue-700'
+                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              Pending
+            </button>
+            <button
+              onClick={() => setViewMode('approved')}
+              className={`px-4 py-2 text-sm font-medium rounded-md whitespace-nowrap ${viewMode === 'approved'
+                ? 'bg-green-100 text-green-700'
+                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              Approved
+            </button>
+            <button
+              onClick={() => setViewMode('rejected')}
+              className={`px-4 py-2 text-sm font-medium rounded-md whitespace-nowrap ${viewMode === 'rejected'
+                ? 'bg-red-100 text-red-700'
+                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                }`}
+            >
+              Rejected
+            </button>
+          </div>
+
+        </div>
+      </header >
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {loading && products.length === 0 ? (
@@ -241,7 +306,14 @@ function App() {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
               {products.map((product) => (
-                <ProductCard key={`${product.id}-${product.asin}`} product={product} />
+                <ProductCard
+                  key={`${product.id}-${product.asin}`}
+                  product={product}
+                  onApprove={() => updateStatus(product.id, 'approved')}
+                  onReject={() => updateStatus(product.id, 'rejected')}
+                  onPending={() => updateStatus(product.id, 'pending')}
+                  showActions={true}
+                />
               ))}
             </div>
 
@@ -260,7 +332,7 @@ function App() {
           </>
         )}
       </main>
-    </div>
+    </div >
   );
 }
 

@@ -8,4 +8,5 @@ export interface Product {
     currency: string | null;
     brand_pass: boolean | null;
     product_url: string | null;
+    manual_status: 'pending' | 'approved' | 'rejected';
 }
