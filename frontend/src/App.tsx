@@ -24,7 +24,7 @@ function App() {
   const [products, setProducts] = useState<Product[]>([]);
   const [dates, setDates] = useState<string[]>([]);
   const [selectedDate, setSelectedDate] = useState<string>('');
-  const [showBrandPassOnly, setShowBrandPassOnly] = useState(false);
+  // const [showBrandPassOnly, setShowBrandPassOnly] = useState(false); // Deprecated: always true now
   const [viewMode, setViewMode] = useState<'all' | 'approved' | 'rejected'>('all');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -41,11 +41,12 @@ function App() {
   }, []);
 
   // When filters change, fetch ALL matching IDs, sort them, then fetch page 0
+  // When filters change, fetch ALL matching IDs, sort them, then fetch page 0
   useEffect(() => {
     if (selectedDate) {
       fetchAndSortIds();
     }
-  }, [selectedDate, showBrandPassOnly, viewMode]);
+  }, [selectedDate, viewMode]);
 
   const fetchDates = async () => {
     if (!supabase) return;
@@ -97,9 +98,9 @@ function App() {
       if (dateToUse) {
         query = query.eq('execution_date', dateToUse);
       }
-      if (showBrandPassOnly) {
-        query = query.eq('brand_pass', true);
-      }
+
+      // Always filter by brand_pass = true per user request
+      query = query.eq('brand_pass', true);
 
       if (viewMode === 'all') {
         // Show pending by default? Or all? User said "products removed" and "approved products" lists.
@@ -114,12 +115,15 @@ function App() {
       const { data, error } = await query;
       if (error) throw error;
 
-      // 2. Client-side sort by numeric sales volume
-      const sorted = (data || []).sort((a, b) => {
-        const valA = parseSalesVolume(a.sales_volume_last_month);
-        const valB = parseSalesVolume(b.sales_volume_last_month);
-        return valB - valA; // Descending
-      }).map(item => item.id);
+      // 2. Client-side sort by numeric sales volume and filter >= 200
+      const sorted = (data || [])
+        .map(item => ({
+          ...item,
+          salesVolumeNum: parseSalesVolume(item.sales_volume_last_month)
+        }))
+        .filter(item => item.salesVolumeNum >= 200) // Filter: Sales >= 200
+        .sort((a, b) => b.salesVolumeNum - a.salesVolumeNum) // Descending
+        .map(item => item.id);
 
       setValidIds(sorted);
 
@@ -226,17 +230,7 @@ function App() {
               </select>
             )}
 
-            <label className="flex items-center space-x-2 text-sm text-gray-700 select-none cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showBrandPassOnly}
-                onChange={(e) => {
-                  setShowBrandPassOnly(e.target.checked);
-                }}
-                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-              />
-              <span className="font-medium">Brand Pass Only</span>
-            </label>
+            {/* Brand Pass Filter removed as it is now enforced by default */}
 
             <button
               onClick={() => {
